@@ -23,12 +23,12 @@ provider:
 
   # Use these variables in the functions and resouorces section below. For example, 
   # ${self:provider.environment.ATTACHMENT_S3_BUCKET}
+
   environment:
     PROJECT_NAME: serverless-todo-app
     TODOS_TABLE: Todos-${self:provider.stage}
-    # TODOS_CREATED_AT_INDEX: CreatedAtIndex
-    ATTACHMENT_S3_BUCKET: serverless-c4-todo-images-${self:provider.stage}
-    # SIGNED_URL_EXPIRATION: 300
+    S3_BUCKET_NAME: serverless-c4-todo-images-${self:provider.stage}
+
 
   custom:
     documentation:
@@ -65,20 +65,6 @@ provider:
                 type: string
               done:
                 type: boolean
-
-  logs:
-    # Enable API Gateway logs
-    restApi: true
-
-  iam:
-    role:
-      statements:
-        - Effect: Allow
-          Action:
-            - xray:PutTelemetryRecords
-            - xray:PutTraceSegments
-          Resource: "*"
-
 
 functions:
 
